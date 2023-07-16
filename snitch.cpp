@@ -1,23 +1,24 @@
 #include <iostream>
 #include <vector>
-
+#include <string>
+#include <cstring>
 #include "file.h"
+#include "lexer.h"
+#include "token.h"
 
 int main(int argc, char* argv[])
 {
 
-	if(!argv[1])
+	std::string phrase = "\n";
+	Lexer lexer = Lexer(phrase);
+
+	Token token = lexer.get_token();
+
+	while(token.type != lexer.TOKEN_EOF)
 	{
-		std::cout << "[Snitch]: Directory was not provided." << std::endl;
-		exit(1);
-	} 
-
-	std::vector<std::string> d = file::list_directory(argv[1]);
-
-	for(int i = 0; i < d.size(); i++) {
-		std::cout << i << " " << d[i] << std::endl;
+		std::cout << token.type << " :: " << token.value << std::endl;
+		token = lexer.get_token();
 	}
-
 
 	return 0;
 }

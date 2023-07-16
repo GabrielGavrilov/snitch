@@ -24,7 +24,7 @@ std::string file::get_file_contents(std::string path)
 	}
 }
 
-std::vector<std::string> file::list_directory(std::string path)
+std::vector<std::string> file::get_contents_in_directory(std::string path)
 {
 
 	std::vector<std::string> directory_list;
@@ -32,11 +32,8 @@ std::vector<std::string> file::list_directory(std::string path)
 	for(std::filesystem::directory_entry entry : std::filesystem::directory_iterator(path)) 
 	{
 		std::string dir_path = entry.path();
-
-		if(entry.is_directory())
-			file::list_directory(dir_path);
 		
-		else if(dir_path.find(".git") != std::string::npos)
+		if(dir_path.find(".git") != std::string::npos)
 			continue;
 
 		else 
