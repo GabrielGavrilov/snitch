@@ -9,16 +9,19 @@
 int main(int argc, char* argv[])
 {
 
-	std::string phrase = "\n";
+
+	std::string phrase = "blah blah // TODO: Hello World\n blah blah";
 	Lexer lexer = Lexer(phrase);
 
 	Token token = lexer.get_token();
 
 	while(token.type != lexer.TOKEN_EOF)
 	{
-		std::cout << token.type << " :: " << token.value << std::endl;
+		if(token.type != -99)
+			std::cout << token.type << " :: " << token.value << std::endl;
+
 		token = lexer.get_token();
-	}
+	} 
 
 	return 0;
 }
