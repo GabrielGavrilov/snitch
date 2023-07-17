@@ -110,7 +110,7 @@ Token Lexer::get_token()
 
 	else if(!this->is_comment)
 	{
-		token = Token(-99, "NULL");
+		token = Token(TOKEN_IGNORE, "NULL");
 	}
 
 	advance();

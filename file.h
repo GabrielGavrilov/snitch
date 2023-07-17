@@ -14,5 +14,5 @@ public:
 	static std::string get_file_contents(std::string path);
 	static std::vector<std::string> get_contents_in_directory(std::string path);
 	static std::string get_git_config_file(std::string path);
-	static void get_github_repo_url(std::string path);
+	static std::string get_github_repo_url(std::string path);
 };

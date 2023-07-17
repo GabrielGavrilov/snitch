@@ -64,20 +64,22 @@ std::string file::get_git_config_file(std::string path)
 	}
 }
 
-void file::get_github_repo_url(std::string path)
+std::string file::get_github_repo_url(std::string path)
 {
 	std::ifstream input(path);
-	for(std::string line ; getline(input, line);)
+	for(std::string line; getline(input, line);)
 	{
 		if(line.find("url") != std::string::npos)
 		{
 			line.erase(std::remove_if(line.begin(), line.end(), isspace), line.end());
 			std::string url = line.substr(line.find("=") + 1);
+			
 			url.erase(url.length()-4);
 			url.insert(8, "api.");
 			url.insert(23, "repos/");
 			url += "/issues";
-			std::cout << url << std::endl;
+			
+			return url;
 		}
 	}
 }
