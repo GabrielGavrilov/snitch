@@ -9,19 +9,8 @@
 int main(int argc, char* argv[])
 {
 
-
-	std::string phrase = "blah blah // TODO: Hello World\n blah blah";
-	Lexer lexer = Lexer(phrase);
-
-	Token token = lexer.get_token();
-
-	while(token.type != lexer.TOKEN_EOF)
-	{
-		if(token.type != -99)
-			std::cout << token.type << " :: " << token.value << std::endl;
-
-		token = lexer.get_token();
-	} 
+	std::string conf = file::get_git_config_file(argv[1]);
+	file::get_github_repo_url(conf);	
 
 	return 0;
 }
