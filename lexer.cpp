@@ -35,11 +35,6 @@ void Lexer::skip_whitespace()
 		advance();
 }
 
-void Lexer::clear_stream()
-{
-	this->temp.str(std::string());
-}
-
 std::string Lexer::type_to_keyword(TokenEnum type)
 {
 	switch(type)
@@ -62,7 +57,7 @@ Lexer::TokenEnum Lexer::keyword_to_type(std::string keyword)
 Token Lexer::get_token()
 {
 	skip_whitespace();
-	clear_stream();
+	std::stringstream temp;
 	Token token;
 
 	if(this->curr_char == '\n')
@@ -79,12 +74,12 @@ Token Lexer::get_token()
 	else if(this->curr_char == '/')
 	{
 		
-		this->temp.put(this->curr_char);
+		temp.put(this->curr_char);
 		if(peek() == '/')
 		{
 			advance();
-			this->temp.put(this->curr_char);
-			token = Token(TOKEN_COMMENT, this->temp.str());
+			temp.put(this->curr_char);
+			token = Token(TOKEN_COMMENT, temp.str());
 			this->is_comment = true;
 		}
 	}
@@ -96,16 +91,16 @@ Token Lexer::get_token()
 
 	else if(isalpha(this->curr_char) && this->is_comment) 
 	{
-		this->temp.put(this->curr_char);
+		temp.put(this->curr_char);
 		
 		while(isalpha(peek()))
 		{
 			advance();
-			this->temp.put(this->curr_char);
+			temp.put(this->curr_char);
 		}
 
-		TokenEnum token_type = keyword_to_type(this->temp.str());
-		token = Token(token_type, this->temp.str());
+		TokenEnum token_type = keyword_to_type(temp.str());
+		token = Token(token_type, temp.str());
 	}
 
 	else if(!this->is_comment)

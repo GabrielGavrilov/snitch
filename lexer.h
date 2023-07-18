@@ -13,7 +13,6 @@ private:
 	int source_size;
 	int curr_pos;
 	char curr_char;
-	std::stringstream temp;
 	bool is_comment;
 
 public:

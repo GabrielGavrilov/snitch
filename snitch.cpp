@@ -1,6 +1,7 @@
 #include "snitch.h"
 #include "file.h"
 #include "lexer.h"
+#include "node.h"
 #include "parser.h"
 #include "token.h"
 
@@ -13,12 +14,13 @@ void initialize(char* argv)
 }
 
 int main(int argc, char* argv[])
-{	
+{
 	initialize(argv[1]);
-	std::string phrase = "//";
+	std::string phrase = "// TODO";
 
 	Lexer lexer = Lexer(phrase);
 	Parser parser = Parser(lexer);
+
 
 	parser.program();
 

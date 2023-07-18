@@ -3,20 +3,18 @@
 Parser::Parser(Lexer lexer)
 {
 	this->lexer = lexer;
-	this->current_token = NULL;
-	this->peek_token = NULL;
 	advance();
-	avance();
+	advance();
 }
 
 bool Parser::check(int token_type)
 {
-	return token_numb == this->current_token.type;
+	return token_type == this->current_token.type;
 }
 
 bool Parser::check_peek(int token_type)
 {
-	return token_numb == this->peek_token.type;
+	return token_type == this->peek_token.type;
 }
 
 void Parser::advance()
@@ -27,31 +25,41 @@ void Parser::advance()
 
 void Parser::program()
 {
-	std::cout << "{SNITCH PROGRAM}" << std::endl;
-
 	while(check(this->lexer.TOKEN_NEWLINE))
 		advance();
 
 	while(!check(this->lexer.TOKEN_EOF))
-		statement();
+	{
+		Node node;
+		node = statement();
+		std::cout << node.type << " :: " << node.data << std::endl;
+	}
 }
 
-void Parser::statement()
+Node Parser::statement()
 {
+	Node node = expression();
+
 	if(this->current_token.type == this->lexer.TOKEN_COMMENT)
 	{
-		std::cout << "{COMMENT STATEMENT}" << std::endl;
-		advance()
+		advance();
 	}
 
-
 	newline();
+	return node;
+}
+
+Node Parser::expression()
+{
+	if(this->current_token.type == this->lexer.TOKEN_TODO)
+	{
+		advance();
+		return Node(Node::NODE_TITLE, "TODO");
+	}
 }
 
 void Parser::newline()
 {
-	std::cout << "{COMMENT STATEMENT OVER}" << std::endl;
-
 	while(check(this->lexer.TOKEN_NEWLINE))	
 		advance();
 }

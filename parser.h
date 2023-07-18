@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "token.h"
+#include "node.h"
 #include "lexer.h"
 
 class Parser 
@@ -17,6 +18,7 @@ public:
 	bool check_peek(int token_numb);
 	void advance();
 	void program();
-	void statement();
+	Node statement();
+	Node expression();
 	void newline();
 };
