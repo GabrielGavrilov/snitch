@@ -16,7 +16,8 @@ private:
 	bool is_comment;
 
 public:
-	enum TokenEnum {
+	enum TokenEnum 
+	{
 		TOKEN_EOF = -1,
 		TOKEN_NEWLINE = 0,
 		TOKEN_TODO_TEXT = 1,

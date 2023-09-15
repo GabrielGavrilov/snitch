@@ -7,24 +7,15 @@
 
 void initialize(char* argv)
 {
-	std::string config_file = file::get_git_config_file(argv);
+	std::string configFile = File::getGitConfigFile(argv);
 
-	git_url = file::get_github_repo_url(config_file);
-	git_token = file::get_file_contents("token.txt");
+	gitUrl = File::getGithubRepoUrl(config_file);
+	gitToken = File::getFileContents("token.txt");
 }
 
 int main(int argc, char* argv[])
 {
 	initialize(argv[1]);
-	std::string phrase = "// TODO";
-
-	Lexer lexer = Lexer(phrase);
-	Parser parser = Parser(lexer);
-
-
-	parser.program();
-
-	std::cout << "Parsing completed." << std::endl;
-
-	return 0;
+	std::cout << git_url << std::endl;
+	std::cout << git_token << std::endl;
 }

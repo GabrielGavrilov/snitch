@@ -5,7 +5,7 @@
 #include <string>
 #include <cstring>
 
-std::string git_url;
-std::string git_token;
+std::string gitUrl;
+std::string gitToken;
 
 void initialize(char* argv);

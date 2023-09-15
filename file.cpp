@@ -1,12 +1,12 @@
 #include "file.h"
 
-void file::error(std::string message)
+void File::error(std::string message)
 {
 	std::cout << "[Snitch]: " << message << std::endl;
 	exit(1);
 }
 
-std::string file::get_file_contents(std::string path)
+std::string File::getFileContents(std::string path)
 {
 	std::ifstream file(path);
 
@@ -27,7 +27,7 @@ std::string file::get_file_contents(std::string path)
 		error("File does not exist.");
 }
 
-std::vector<std::string> file::get_contents_in_directory(std::string path)
+std::vector<std::string> File::getContentsInDirectory(std::string path)
 {
 	std::vector<std::string> directory_list;
 
@@ -45,7 +45,7 @@ std::vector<std::string> file::get_contents_in_directory(std::string path)
 	return directory_list;
 }
 
-std::string file::get_git_config_file(std::string path)
+std::string File::getGitConfigFile(std::string path)
 {
 	char last_char = path[path.size() - 1];
 	if(last_char == '/')
@@ -64,7 +64,7 @@ std::string file::get_git_config_file(std::string path)
 	}
 }
 
-std::string file::get_github_repo_url(std::string path)
+std::string File::getGithubRepoUrl(std::string path)
 {
 	std::ifstream input(path);
 	for(std::string line; getline(input, line);)

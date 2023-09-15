@@ -7,12 +7,12 @@
 #include <filesystem>
 #include <vector>
 
-class file 
+class File 
 {
 public:
 	static void error(std::string message);
-	static std::string get_file_contents(std::string path);
-	static std::vector<std::string> get_contents_in_directory(std::string path);
-	static std::string get_git_config_file(std::string path);
-	static std::string get_github_repo_url(std::string path);
+	static std::string getFileContents(std::string path);
+	static std::vector<std::string> getContentsInDirectory(std::string path);
+	static std::string getGitConfigFile(std::string path);
+	static std::string getGithubRepoUrl(std::string path);
 };
