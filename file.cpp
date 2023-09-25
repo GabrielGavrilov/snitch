@@ -1,11 +1,17 @@
 #include "file.h"
 
+/**
+ * Sends an error message and terminates the program.
+ */
 void File::error(std::string message)
 {
 	std::cout << "[Snitch]: " << message << std::endl;
 	exit(1);
 }
 
+/**
+ * Returns the contents of a given file.
+ */
 std::string File::getFileContents(std::string path)
 {
 	std::ifstream file(path);
@@ -27,6 +33,10 @@ std::string File::getFileContents(std::string path)
 		error("File does not exist.");
 }
 
+/**
+ * Lists all the files that are listed inside a given directory.
+ * Snitch skips the .git/ directory because we don't want to look for TODO comments in there.
+ */
 std::vector<std::string> File::getContentsInDirectory(std::string path)
 {
 	std::vector<std::string> directory_list;
@@ -45,7 +55,11 @@ std::vector<std::string> File::getContentsInDirectory(std::string path)
 	return directory_list;
 }
 
-std::string File::getGitConfigFile(std::string path)
+/**
+ * Returns the path to the git config file. 
+ * We use the git config file to find the github repository url.
+ */
+std::string File::getGitConfigFilePath(std::string path)
 {
 	char last_char = path[path.size() - 1];
 	if(last_char == '/')
@@ -64,6 +78,9 @@ std::string File::getGitConfigFile(std::string path)
 	}
 }
 
+/**
+ * Returns the github repository url from the git config file.
+ */
 std::string File::getGithubRepoUrl(std::string path)
 {
 	std::ifstream input(path);

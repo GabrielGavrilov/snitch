@@ -1,5 +1,5 @@
 CC = g++
-FILES = snitch.cpp file.cpp lexer.cpp parser.cpp
+FILES = snitch.cpp file.cpp
 TARGET = snitch
 FLAGS = w
 
