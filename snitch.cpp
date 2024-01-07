@@ -9,22 +9,18 @@
  */
 void initialize(char* argv)
 {
-	std::string git_config_file = File::get_git_config_file_path(argv);
+	std::string git_config_file = file::get_git_config_file_path(argv);
 
-	github_url = File::get_github_repo_url(git_config_file);
-	github_token = File::get_file_contents("token.txt");
+	github_url = file::get_github_repo_url(git_config_file);
+	github_token = file::get_file_contents("token.txt");
 }
 
 int main(int argc, char* argv[])
 {
 	initialize(argv[1]);
 
-	std::string src = "//";
-	Lexer lexer = Lexer(src);
+	std::cout << github_url << std::endl;
+	std::cout << github_token << std::endl;
 
-	Token token = lexer.lexer_generate_token();
-	while(token.type != -1) {
-		std::cout << token.type << " :: " << token.value << std::endl;
-		token = lexer.lexer_generate_token();
-	}
+	return EXIT_SUCCESS;
 }

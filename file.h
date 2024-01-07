@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <vector>
 
-class File 
+class file
 {
 public:
 	static void error(std::string message);
